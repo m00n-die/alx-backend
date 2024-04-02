@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
-"""task 00"""
+"""BasicCache that inherits from BaseCaching"""
 
 from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """BasicCache class"""
-    def __init__(self):
-        """initialization"""
-        BaseCaching.__init__(self)
+    """A class that inherits from the BaseCaching class"""
+    def __inti__(self, cache_data):
+        """Initialize the subclass"""
+        super().__init__()
 
     def put(self, key, item):
-        """store a key value pair"""
+        """function thats inserts into the cache"""
         if key is None or item is None:
             return
         self.cache_data[key] = item
 
     def get(self, key):
-        """return value of a key"""
-        if key is not None and key in self.cache_data.keys():
-            return self.cache_data[key]
-        return None
+        """gets item stored at key"""
+        if key is None or key not in self.cache_data:
+            return None
+        value = self.cache_data.get(key)
+        return value
