@@ -15,7 +15,9 @@ class FIFOCache(BaseCaching):
         if key is None or item is None:
             return
         elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            key_one, item_one = self.cache_data.popitem()
+            iterator = iter(self.cache_data.items())
+            key_one, item_one = next(iterator)
+            del self.cache_data[key_one]
             print(f'DISCARD: {key_one}')
         else:
             self.cache_data[key] = item
@@ -25,4 +27,4 @@ class FIFOCache(BaseCaching):
         if key is None or key not in self.cache_data:
             return None
         value = self.cache_data.get(key)
-        return value 
+        return value
